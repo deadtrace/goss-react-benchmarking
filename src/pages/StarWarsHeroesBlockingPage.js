@@ -1,6 +1,5 @@
 import { Table, Tbody, Tr, Td, Thead, Th } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { ChakraProvider } from "@chakra-ui/react";
 
 function App() {
     const [data, setData] = useState([]);
@@ -22,26 +21,24 @@ function App() {
     if (data.length === 0) return null;
 
     return (
-        <ChakraProvider>
-            <Table>
-                <Thead>
-                    <Tr>
-                        <Th>Name</Th>
-                        <Th isNumeric>Height</Th>
-                        <Th isNumeric>Mass</Th>
+        <Table>
+            <Thead>
+                <Tr>
+                    <Th>Name</Th>
+                    <Th isNumeric>Height</Th>
+                    <Th isNumeric>Mass</Th>
+                </Tr>
+            </Thead>
+            <Tbody>
+                {data.map((item) => (
+                    <Tr key={item.url}>
+                        <Td>{item.name}</Td>
+                        <Td isNumeric>{item.height}</Td>
+                        <Td isNumeric>{item.mass}</Td>
                     </Tr>
-                </Thead>
-                <Tbody>
-                    {data.map((item) => (
-                        <Tr key={item.url}>
-                            <Td>{item.name}</Td>
-                            <Td isNumeric>{item.height}</Td>
-                            <Td isNumeric>{item.mass}</Td>
-                        </Tr>
-                    ))}
-                </Tbody>
-            </Table>
-        </ChakraProvider>
+                ))}
+            </Tbody>
+        </Table>
     );
 }
 
